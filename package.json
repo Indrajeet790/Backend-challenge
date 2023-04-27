@@ -1,0 +1,27 @@
+{
+  "name": "shopping-e-commerce-projects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Indrajeet790/E-commerece-Backend-Node-js-projects.git"
+  },
+  "author": "Indrajeet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Indrajeet790/E-commerece-Backend-Node-js-projects/issues"
+  },
+  "homepage": "https://github.com/Indrajeet790/E-commerece-Backend-Node-js-projects#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.5",
+    "nodemon": "^2.0.22"
+  }
+}
