@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 require("./config/dbConnection").connect();
 // require route file
 const authRouter = require("./routes/authRoutes");
+const { notFound, errorHandler } = require("./Middleware/errorHandling");
 
 const app = express();
 const dotenv = require("dotenv").config();
@@ -18,6 +19,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // routes
 // authRoutes
 app.use("/api/user", authRouter);
+
+// middleware for error handling
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, (err) => {
   if (err) {
