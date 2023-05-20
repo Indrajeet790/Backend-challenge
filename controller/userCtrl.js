@@ -10,7 +10,9 @@ const createUser = async (req, resp) => {
     const newUser = await User.create(req.body);
     resp.json(newUser);
   } else {
-    throw new Error("user already Exists");
+    resp.json({
+      message: "user already exists",
+    });
   }
 };
 // login using email and password
@@ -36,4 +38,70 @@ const loginUserCtrl = asyncHandler(async (req, resp) => {
   }
 });
 
-module.exports = { createUser, loginUserCtrl };
+// update a user
+const updateUser = asyncHandler(async (req, resp) => {
+  const { id } = req.params;
+  const updateUser = await User.findByIdAndUpdate(
+    id,
+    {
+      firstname: req?.body?.firstname,
+      lastname: req?.body?.lastname,
+      email: req?.body?.email,
+      mobile: req?.body?.mobile,
+    },
+    {
+      new: true,
+    }
+  );
+  resp.json(updateUser);
+});
+
+//  get all users
+const getallUser = asyncHandler(async (req, resp) => {
+  try {
+    const getUsers = await User.find();
+    resp.json(getUsers);
+  } catch (error) {
+    resp.json({
+      message: "error",
+    });
+  }
+});
+
+// if you get a single user
+const getaUser = asyncHandler(async (req, resp) => {
+  const { id } = req.params;
+  // console.log(id);
+  try {
+    const getaUser = await User.findById(id);
+    resp.json({ getaUser });
+  } catch (error) {
+    resp.json({
+      message: "invalid id",
+    });
+  }
+});
+
+// how to delete a user
+const deleteUser = asyncHandler(async (req, resp) => {
+  const { id } = req.params;
+  try {
+    const deleteUser = await User.findByIdAndDelete(id);
+    resp.json({
+      deleteUser,
+    });
+  } catch (error) {
+    resp.json({
+      message: "error while deletion",
+    });
+  }
+});
+
+module.exports = {
+  createUser,
+  loginUserCtrl,
+  getallUser,
+  getaUser,
+  deleteUser,
+  updateUser,
+};
