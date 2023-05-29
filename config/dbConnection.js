@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
+const dotenv = require("dotenv").config();
 mongoose.set("strictQuery", false);
 exports.connect = () => {
   mongoose
