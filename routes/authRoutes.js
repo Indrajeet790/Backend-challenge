@@ -10,6 +10,8 @@ const {
 const router = express.Router();
 createUser;
 
+const { authMiddleware } = require("../Middleware/authMiddleware");
+
 // route for create  a new user
 router.post("/register", createUser);
 
@@ -20,9 +22,9 @@ router.post("/login", loginUserCtrl);
 router.get("/all-users", getallUser);
 
 // get a single user
-router.get("/:id", getaUser);
+router.get("/:id", authMiddleware, getaUser);
 
-// delete route fo a user
+// delete route for a user
 router.delete("/:id", deleteUser);
 
 // update a user details
